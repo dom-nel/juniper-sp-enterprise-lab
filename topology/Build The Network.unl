@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<lab name="Build The Network" version="1" scripttimeout="300" lock="0">
+  <topology>
+    <nodes>
+      <node id="1" name="PC-LAN" type="vpcs" template="vpcs" image="" ethernet="1" delay="0" icon="PC-2D-Desktop-Generic-S.svg" config="0" left="60" top="213">
+        <interface id="0" name="eth0" type="ethernet" network_id="1"/>
+      </node>
+      <node id="2" name="PC-WAN" type="vpcs" template="vpcs" image="" ethernet="1" delay="0" icon="PC-2D-Desktop-Generic-S.svg" config="0" left="828" top="210">
+        <interface id="0" name="eth0" type="ethernet" network_id="3"/>
+      </node>
+      <node id="3" name="FW-SRX" type="qemu" template="vsrxng" image="vsrxng-23.2R2.21" console="telnet" cpu="2" cpulimit="0" ram="4096" ethernet="4" uuid="4a2b64b7-a53f-41a5-9cb3-0312552b76a6" qemu_options="-machine type=pc,accel=kvm -cpu host -serial mon:stdio -nographic -no-user-config -nodefaults -rtc base=utc" qemu_version="4.1.0" qemu_arch="x86_64" qemu_nic="virtio-net-pci" delay="0" icon="Juniper-2D-VSRX-S.svg" config="0" left="270" top="207">
+        <interface id="1" name="ge-0/0/0" type="ethernet" network_id="1"/>
+        <interface id="2" name="ge-0/0/1" type="ethernet" network_id="2"/>
+      </node>
+      <node id="4" name="RTR-SRX" type="qemu" template="vsrxng" image="vsrxng-23.2R2.21" console="telnet" cpu="2" cpulimit="0" ram="4096" ethernet="4" uuid="c9355805-84ca-468d-b019-67d96458ca1f" qemu_options="-machine type=pc,accel=kvm -cpu host -serial mon:stdio -nographic -no-user-config -nodefaults -rtc base=utc" qemu_version="4.1.0" qemu_arch="x86_64" qemu_nic="virtio-net-pci" delay="0" icon="Juniper-2D-VSRX-S.svg" config="0" left="510" top="207">
+        <interface id="1" name="ge-0/0/0" type="ethernet" network_id="2"/>
+        <interface id="2" name="ge-0/0/1" type="ethernet" network_id="3"/>
+      </node>
+    </nodes>
+    <networks>
+      <network id="1" type="bridge" name="Net-PC-LANiface_0" left="243" top="256" visibility="0" icon="lan.png"/>
+      <network id="2" type="bridge" name="Net-FW-SRXiface_2" left="411" top="253" visibility="0" icon="lan.png"/>
+      <network id="3" type="bridge" name="Net-RTR-SRXiface_2" left="570" top="247" visibility="0" icon="lan.png"/>
+    </networks>
+  </topology>
+</lab>
