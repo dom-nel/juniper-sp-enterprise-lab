@@ -1,0 +1,55 @@
+Phase 1 - Google Cloud EVE-NG Host Validation
+Date: 2026-08-16
+Status: PASS
+
+Sensitive cloud identifiers and external addressing have been omitted.
+
+Nested virtualization
+---------------------
+Command: grep -cw vmx /proc/cpuinfo
+Result: 16
+
+Command: kvm-ok
+Result:
+INFO: /dev/kvm exists
+KVM acceleration can be used
+
+EVE-NG platform
+---------------
+Command: uname -r
+Result:
+6.7.5-eveng-6-ksm+
+
+Command: dpkg -l eve-ng | grep '^ii'
+Result:
+ii  eve-ng  6.2.0-4  amd64  A new generation software for networking labs.
+
+First-boot setup
+----------------
+Command:
+sudo test -f /opt/ovf/.configured && echo "EVE setup complete"
+
+Result:
+EVE setup complete
+
+Services
+--------
+Command:
+sudo systemctl is-active apache2 mysql
+
+Result:
+active
+active
+
+Host resources observed after deployment
+----------------------------------------
+vCPU: 8
+Memory: 32 GB
+Boot disk: approximately 100 GB
+
+Conclusion
+----------
+The Google Cloud host supports nested KVM virtualization, is running the
+EVE-NG kernel, has completed first-boot configuration, and has active web
+and database services. The cloud EVE-NG platform is ready for the Phase 1
+topology migration.
