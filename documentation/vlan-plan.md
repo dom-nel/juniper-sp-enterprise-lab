@@ -1,5 +1,7 @@
 # VLAN Plan
 
+> **Future design reference:** VLANs and switching are not implemented in the active four-node Phase 1 topology. This document is retained as design input for a later switching phase and must not be read as completed work.
+
 ## Purpose
 
 This document defines how Layer 2 networks will be segmented across the enterprise portion of the lab.

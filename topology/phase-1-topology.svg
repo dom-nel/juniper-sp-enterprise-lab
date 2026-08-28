@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="620" viewBox="0 0 1400 620" role="img" aria-labelledby="title desc">
+  <title id="title">Phase 1 cloud-hosted Juniper enterprise-to-WAN topology</title>
+  <desc id="desc">An EVE-NG lab on Google Cloud containing an enterprise endpoint, a stateful Juniper firewall, a routing-focused Juniper SRX, and a WAN endpoint.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f7faff"/>
+      <stop offset="1" stop-color="#eef4fb"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#0f2747" flood-opacity="0.14"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#1d4f91"/>
+    </marker>
+  </defs>
+
+  <rect width="1400" height="620" fill="url(#bg)"/>
+  <rect x="40" y="32" width="1320" height="552" rx="28" fill="#ffffff" stroke="#c9d8ea" stroke-width="2"/>
+
+  <text x="80" y="88" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" fill="#17365d">Phase 1: Static Routing and Stateful Firewall Baseline</text>
+  <text x="80" y="122" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#51657d">EVE-NG hosted on a Google Cloud Compute Engine VM</text>
+
+  <rect x="80" y="152" width="1240" height="360" rx="22" fill="#f8fbff" stroke="#9db7d5" stroke-width="2" stroke-dasharray="9 7"/>
+  <text x="104" y="184" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" fill="#466482">EVE-NG data plane</text>
+
+  <line x1="340" y1="332" x2="455" y2="332" stroke="#1d4f91" stroke-width="5" marker-end="url(#arrow)"/>
+  <line x1="715" y1="332" x2="830" y2="332" stroke="#1d4f91" stroke-width="5" marker-end="url(#arrow)"/>
+  <line x1="1090" y1="332" x2="1205" y2="332" stroke="#1d4f91" stroke-width="5" marker-end="url(#arrow)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="105" y="238" width="235" height="188" rx="18" fill="#ffffff" stroke="#4a78b1" stroke-width="3"/>
+    <rect x="105" y="238" width="235" height="48" rx="18" fill="#2f6fb3"/>
+    <path d="M105 268 H340 V286 H105 Z" fill="#2f6fb3"/>
+    <text x="222.5" y="270" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#ffffff">LAB-PC-01</text>
+    <text x="222.5" y="322" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#17365d">Enterprise endpoint</text>
+    <text x="222.5" y="354" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#334e6f">10.10.10.10/24</text>
+    <text x="222.5" y="384" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#5a6f86">GW 10.10.10.1</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="455" y="218" width="260" height="228" rx="18" fill="#ffffff" stroke="#2e8b73" stroke-width="3"/>
+    <rect x="455" y="218" width="260" height="48" rx="18" fill="#24765f"/>
+    <path d="M455 248 H715 V266 H455 Z" fill="#24765f"/>
+    <text x="585" y="250" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#ffffff">LAB-FW-01</text>
+    <text x="585" y="302" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#17365d">Stateful Juniper vSRX</text>
+    <text x="585" y="336" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#334e6f">trust: 10.10.10.1/24</text>
+    <text x="585" y="367" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#334e6f">untrust: 10.255.0.1/30</text>
+    <text x="585" y="404" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#24765f">Static route to 10.20.20.0/24</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="830" y="218" width="260" height="228" rx="18" fill="#ffffff" stroke="#d38a2c" stroke-width="3"/>
+    <rect x="830" y="218" width="260" height="48" rx="18" fill="#bd741b"/>
+    <path d="M830 248 H1090 V266 H830 Z" fill="#bd741b"/>
+    <text x="960" y="250" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#ffffff">LAB-RTR-01</text>
+    <text x="960" y="302" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#17365d">Routing-focused vSRX</text>
+    <text x="960" y="336" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#334e6f">10.255.0.2/30</text>
+    <text x="960" y="367" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#334e6f">10.20.20.1/24</text>
+    <text x="960" y="404" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#9b5b11">Return route to 10.10.10.0/24</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="1205" y="238" width="115" height="188" rx="18" fill="#ffffff" stroke="#6957a5" stroke-width="3"/>
+    <rect x="1205" y="238" width="115" height="48" rx="18" fill="#5b4896"/>
+    <path d="M1205 268 H1320 V286 H1205 Z" fill="#5b4896"/>
+    <text x="1262.5" y="270" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" fill="#ffffff">PC-02</text>
+    <text x="1262.5" y="324" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#17365d">WAN</text>
+    <text x="1262.5" y="350" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#17365d">endpoint</text>
+    <text x="1262.5" y="383" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#334e6f">10.20.20.10</text>
+  </g>
+
+  <text x="397" y="310" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#1d4f91">10.10.10.0/24</text>
+  <text x="772" y="310" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#1d4f91">10.255.0.0/30</text>
+  <text x="1147" y="310" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#1d4f91">10.20.20.0/24</text>
+
+  <rect x="80" y="530" width="14" height="14" rx="3" fill="#24765f"/>
+  <text x="106" y="543" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#51657d">Firewall baseline committed</text>
+  <rect x="325" y="530" width="14" height="14" rx="3" fill="#bd741b"/>
+  <text x="351" y="543" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#51657d">Router and endpoint validation in progress</text>
+  <text x="1320" y="548" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#6c7f94">Google Cloud -> Linux -> EVE-NG -> Juniper vSRX</text>
+</svg>

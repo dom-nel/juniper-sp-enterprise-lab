@@ -67,4 +67,4 @@ A basic end-to-end traffic flow follows:
 
 `LAB-PC-01 → LAB-FW-01 → LAB-RTR-01 → LAB-PC-02`
 
-This provides the initial architecture that will later expand to include switching, VLANs, servers, dynamic routing, automation, and additional service-provider components.
+This is the active Phase 1 architecture. Later switching, dynamic-routing, and data-collection work is separated in the project roadmap and is not part of the completed baseline claim.
