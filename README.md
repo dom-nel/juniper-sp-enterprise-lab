@@ -59,7 +59,7 @@ The missing transit policy is intentional. It creates a controlled checkpoint wh
 
 See the [Phase 1 build record](documentation/phase-1/README.md) for the completed steps, remaining work, and acceptance criteria.
 
-## What This Phase Demonstrates
+## What the Current Evidence Demonstrates
 
 ### Cloud and platform administration
 
@@ -69,17 +69,17 @@ See the [Phase 1 build record](documentation/phase-1/README.md) for the complete
 - EVE-NG installation and browser-based access
 - Juniper appliance deployment and Telnet console access
 
-### Networking and security
+### Networking and security evidence completed
 
-- IPv4 addressing, CIDR, and default gateways
-- `/24` endpoint networks and `/30` point-to-point transit
-- Directly connected and static routes
-- Route-table and next-hop interpretation
-- Juniper SRX trust and untrust zones
-- Host-inbound traffic versus transit traffic
-- Stateful security policy and session validation
+- Phase 1 address and subnet design for two `/24` endpoint LANs and a `/30` transit link
+- Operational `LAB-FW-01` interfaces with the planned IPv4 addresses
+- An active static route on `LAB-FW-01` toward `10.20.20.0/24` through `10.255.0.2`
+- Route-table and next-hop interpretation without treating route existence as proof of reachability
+- `LAB-FW-01` trust and untrust zone assignment
+- Host-inbound ICMP versus transit-policy authorization
+- Deliberate removal of the broad transit permit to create a controlled policy-test checkpoint
 
-### Change control and troubleshooting
+### Change control and troubleshooting evidence completed
 
 - Junos candidate configuration
 - `show | compare` review
@@ -88,9 +88,18 @@ See the [Phase 1 build record](documentation/phase-1/README.md) for the complete
 - One-command, one-question troubleshooting
 - Explicit documentation of what an output proves and what it does not prove
 
+## Remaining Phase 1 Acceptance Tests
+
+- Configure and validate both `LAB-RTR-01` interfaces and its static return route.
+- Configure both endpoints and prove local-gateway reachability.
+- Record the expected transit failure while no security policy authorizes the flow.
+- Add a narrow `trust -> untrust` ICMP policy and prove end-to-end success.
+- Inspect the SRX session table to prove stateful return handling.
+- Prove WAN-initiated traffic remains denied without a reverse policy.
+- Export sanitized final device configurations and remaining command evidence.
 ## Phase 1 Validation Method
 
-The build is intentionally validated in layers:
+The complete Phase 1 build will be validated in layers. Only results linked under Current Status are claimed as complete:
 
 1. Confirm each interface is operational and correctly addressed.
 2. Confirm directly connected neighbors can communicate.
@@ -122,7 +131,7 @@ Did the firewall create a session?
 | `troubleshooting/` | Fault records, root-cause analysis, and lessons learned |
 | `ROADMAP.md` | Clearly separated future expansion after Phase 1 |
 
-Directories are added when they contain a real artifact. Empty automation and server directories are intentionally excluded from the completed build.
+Placeholder-only directories are excluded from the tree. `device-configs/` will be added after sanitized configurations are exported; switching, automation, and server artifacts will be added only when their phases are implemented and validated.
 
 ## Documentation
 
