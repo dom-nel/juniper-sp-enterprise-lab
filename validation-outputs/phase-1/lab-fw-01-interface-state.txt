@@ -1,0 +1,24 @@
+Phase 1 - LAB-FW-01 Interface State
+Status: PASS
+
+Command
+-------
+show interfaces terse | match "ge-0/0/0|ge-0/0/1"
+
+Sanitized output
+----------------
+ge-0/0/0                up    up
+ge-0/0/0.0              up    up   inet     10.10.10.1/24
+ge-0/0/1                up    up
+ge-0/0/1.0              up    up   inet     10.255.0.1/30
+
+Conclusion
+----------
+Both involved physical interfaces and logical unit 0 interfaces are
+operational. The enterprise-facing and router-facing IPv4 addresses match the
+Phase 1 addressing plan.
+
+Scope limit
+-----------
+This output does not prove neighbor configuration, endpoint addressing,
+security-zone membership, policy authorization, or end-to-end reachability.

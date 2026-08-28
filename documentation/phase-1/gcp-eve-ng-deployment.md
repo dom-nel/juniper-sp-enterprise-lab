@@ -4,7 +4,7 @@
 
 This document records the migration of the EVE-NG platform from a local VMware Fusion environment to Google Cloud during Phase 1.
 
-The migration provides a stable virtualization platform for two vSRX nodes and leaves room for the planned switches, endpoints, and Linux services.
+The migration provides a stable virtualization platform for the two vSRX nodes and the current endpoint topology while leaving room for later expansion.
 
 ## Why the Platform Changed
 
@@ -130,6 +130,8 @@ Stopping the VM preserves its persistent disk and EVE-NG installation while stop
 - Do not perform an Ubuntu release upgrade unless the target release is supported by the installed EVE-NG version.
 - Store only sanitized topology exports, configurations, validation output, and screenshots in GitHub.
 
-## Next Step
+## Current Result
 
-Upload the licensed vSRX image directly to the EVE-NG server, migrate the four-node baseline topology, restore the device configurations, and complete end-to-end connectivity validation.
+The licensed vSRX image and four-node topology were subsequently deployed in the cloud EVE-NG environment. Both Juniper devices became accessible through the remote console path, and the `LAB-FW-01` Phase 1 interface, zone, and static-route baseline was validated and committed.
+
+The remaining work is documented in the [Phase 1 build record](README.md): finish `LAB-RTR-01`, configure both endpoints, demonstrate the expected pre-policy denial, add a narrow ICMP permit, and validate the resulting SRX session.

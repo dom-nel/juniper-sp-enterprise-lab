@@ -40,7 +40,6 @@ The role identifies the primary function of the device.
 | SW | Switch |
 | SRV | Server |
 | PC | End Host |
-| AUTO | Automation Server |
 
 ### NUMBER
 
@@ -55,19 +54,17 @@ Examples:
 - `LAB-PC-01`
 - `LAB-PC-02`
 
-## Planned Topology
+## Current Topology
 
-The planned topology is:
+The active Phase 1 topology is:
 
-`PC-LAN → ACCESS-SW → DIST-SW → FW-SRX → RTR-SRX → PC-WAN`
+`PC-LAN -> FW-SRX -> RTR-SRX -> PC-WAN`
 
 ## Device Naming Map
 
-| EVE-NG Name | Planned Hostname | Role |
+| EVE-NG Name | Hostname | Role |
 |---|---|---|
 | PC-LAN | `LAB-PC-01` | Enterprise LAN client |
-| ACCESS-SW | `LAB-SW-01` | Enterprise access-layer switch |
-| DIST-SW | `LAB-SW-02` | Enterprise distribution-layer switch |
 | FW-SRX | `LAB-FW-01` | Juniper SRX dedicated firewall |
 | RTR-SRX | `LAB-RTR-01` | Juniper SRX operating in a routing-focused role |
 | PC-WAN | `LAB-PC-02` | WAN-side / external test client |
@@ -87,10 +84,7 @@ For example:
 - `LAB-FW-01` identifies the SRX operating as the dedicated firewall.
 - `LAB-RTR-01` identifies the SRX operating in the routing-focused role.
 
-- Switches use the `SW` role code.
-- The device number distinguishes the access and distribution switches.
-- `LAB-SW-01` is currently assigned to the access layer.
-- `LAB-SW-02` is currently assigned to the distribution layer.
+- Future switches will use the `SW` role code when the switching phase begins.
 
 ## Expansion Rule
 
@@ -98,9 +92,8 @@ New devices will follow the same naming standard as the topology grows.
 
 Examples:
 
-- A second access switch could become `LAB-SW-03`.
+- A future access switch could become `LAB-SW-01`.
 - An Ubuntu server could become `LAB-SRV-01`.
-- A dedicated automation server could become `LAB-AUTO-01`.
 - An additional router could become `LAB-RTR-02`.
 
-The hostname convention should remain stable so that device names are predictable throughout configurations, diagrams, automation, validation outputs, and troubleshooting documentation.
+The hostname convention should remain stable so that device names are predictable throughout configurations, diagrams, validation outputs, and troubleshooting documentation.

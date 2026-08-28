@@ -1,0 +1,24 @@
+Phase 1 - LAB-FW-01 Route to WAN Endpoint Network
+Status: PASS
+
+Command
+-------
+show route 10.20.20.0/24
+
+Sanitized output
+----------------
+inet.0: 5 destinations, 5 routes (5 active, 0 holddown, 0 hidden)
++ = Active Route, - = Last Active, * = Both
+
+10.20.20.0/24      *[Static/5]
+                    >  to 10.255.0.2 via ge-0/0/1.0
+
+Conclusion
+----------
+LAB-FW-01 has an active static route for 10.20.20.0/24. Matching packets use
+LAB-RTR-01 at 10.255.0.2 as the next hop and leave through ge-0/0/1.0.
+
+Scope limit
+-----------
+This output does not prove that LAB-RTR-01 is fully configured, LAB-PC-02 is
+reachable, or a trust-to-untrust security policy permits the transit flow.
