@@ -59,7 +59,33 @@ The missing transit policy is intentional. It creates a controlled checkpoint wh
 
 See the [Phase 1 build record](documentation/phase-1/README.md) for the completed steps, remaining work, and acceptance criteria.
 
-## What This Phase Demonstrates
+## Automation Milestone: Read-Only Device Facts
+
+The first network automation milestone is complete. A local Python program using Junos PyEZ connected to both cloud-hosted vSRX consoles and retrieved structured device facts.
+
+```mermaid
+flowchart LR
+    A["Python + PyEZ<br/>local workstation"]
+    B["127.0.0.1<br/>ports 32771 and 32772"]
+    C["Encrypted SSH tunnel"]
+    D["GCP VM<br/>Linux + EVE-NG"]
+    E["LAB-FW-01<br/>vSRX console"]
+    F["LAB-RTR-01<br/>vSRX console"]
+
+    A --> B --> C --> D
+    D --> E
+    D --> F
+```
+
+This was a read-only console workflow. SSH encrypted the workstation-to-GCP path, while PyEZ used `mode="telnet"` for the final EVE-NG console sessions. It should not be described as NETCONF over SSH; management-plane NETCONF on TCP 830 remains a future milestone.
+
+- [Automation walkthrough and reproduction steps](automation/README.md)
+- [Python facts collector](automation/pull_device_facts.py)
+- [Sanitized two-device output](validation-outputs/automation/pyez-facts-sanitized.txt)
+- [Connection-path diagram](diagrams/pyez-console-access.md)
+- [Troubleshooting record](troubleshooting/pyez-console-access.md)
+
+## What This Project Demonstrates
 
 ### Cloud and platform administration
 
@@ -78,6 +104,14 @@ See the [Phase 1 build record](documentation/phase-1/README.md) for the complete
 - Juniper SRX trust and untrust zones
 - Host-inbound traffic versus transit traffic
 - Stateful security policy and session validation
+
+### Python and network automation
+
+- Multi-device inventory using Python dictionaries and iteration
+- Secret-safe runtime credential prompts with `getpass`
+- SSH local port forwarding to remote EVE-NG console sockets
+- Junos PyEZ console sessions and dictionary-like device facts
+- Explicit separation of console access, SSH tunneling, and NETCONF
 
 ### Change control and troubleshooting
 
@@ -116,13 +150,13 @@ Did the firewall create a session?
 
 | Path | Purpose |
 |---|---|
-| `topology/` | EVE-NG export and Phase 1 architecture diagram |
+| `automation/` | Python collector, dependency file, and reproducible SSH/PyEZ procedure |
+| `diagrams/` | Management-path diagrams for automation milestones |
+| `topology/` | EVE-NG export and Phase 1 data-plane architecture diagram |
 | `documentation/` | Addressing, roles, interface maps, deployment, and phase records |
 | `validation-outputs/` | Sanitized command output and traffic-test evidence |
 | `troubleshooting/` | Fault records, root-cause analysis, and lessons learned |
 | `ROADMAP.md` | Clearly separated future expansion after Phase 1 |
-
-Directories are added when they contain a real artifact. Empty automation and server directories are intentionally excluded from the completed build.
 
 ## Documentation
 
@@ -132,13 +166,16 @@ Directories are added when they contain a real artifact. Empty automation and se
 - [Interface and Circuit Map](documentation/interface-circuit-map.md)
 - [IP Addressing Plan](documentation/ip-addressing-plan.md)
 - [Hostname Convention](documentation/hostname-convention.md)
+- [PyEZ Console Automation](automation/README.md)
 - [Local vSRX Resource Exhaustion](troubleshooting/local-vsrx-resource-exhaustion.md)
+- [PyEZ Console Troubleshooting](troubleshooting/pyez-console-access.md)
 - [GCP Host Validation](validation-outputs/phase-1/gcp-host-validation.txt)
+- [PyEZ Facts Evidence](validation-outputs/automation/pyez-facts-sanitized.txt)
 - [Future Development](ROADMAP.md)
 
 ## Future Development
 
-Dynamic routing, switching, automation, and telemetry are not part of the completed Phase 1 claim. They are sequenced in [ROADMAP.md](ROADMAP.md) and will move into the main documentation only after configuration and validation evidence exists.
+Switching, dynamic routing, configuration automation, telemetry, and data engineering remain future work. The completed PyEZ collector is the first read-only automation milestone; additional milestones will move into the main documentation only after configuration and validation evidence exists.
 
 ## Repository Safety
 
