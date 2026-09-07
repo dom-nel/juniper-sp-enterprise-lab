@@ -1,10 +1,20 @@
 # Future Development Roadmap
 
-This file contains planned work only. Nothing below should be described as implemented until configuration and validation evidence is committed to the repository.
+This file separates completed milestones from planned work. Nothing under a future milestone should be described as implemented until configuration and validation evidence is committed to the repository.
+
+## Completed Automation Foundation
+
+- Used Python and Junos PyEZ to connect to both vSRX consoles.
+- Mapped `LAB-FW-01` and `LAB-RTR-01` to their EVE-NG console ports in a Python inventory.
+- Protected the workstation-to-GCP path with SSH local port forwarding.
+- Retrieved and documented structured, read-only device facts from both devices.
+- Sanitized credentials, cloud identifiers, public addressing, and sensitive output before publication.
+
+This is console-based, read-only state collection. It is not NETCONF-over-SSH or configuration automation.
 
 ## Phase 1 Closeout
 
-- Finish LAB-RTR-01 and endpoint configuration.
+- Finish `LAB-RTR-01` and endpoint configuration.
 - Demonstrate pre-policy denial and post-policy ICMP success.
 - Validate stateful SRX session handling.
 - Export sanitized configurations and command output.
@@ -22,12 +32,14 @@ This file contains planned work only. Nothing below should be described as imple
 - Validate adjacency formation, route learning, failure behavior, and recovery.
 - Introduce BGP only after the underlying routing and addressing model is independently explainable.
 
-## Phase 4 - Network Automation
+## Phase 4 - Management-Plane Automation
 
-- Enable NETCONF and establish Juniper PyEZ connectivity.
-- Collect device facts and operational state.
+- Configure reachable management addressing for the lab devices.
+- Enable `system services netconf ssh` on the intended interfaces.
+- Establish direct PyEZ NETCONF sessions over SSH, normally on TCP 830.
 - Compare current state with a known-good baseline.
-- Add repeatable configuration and validation workflows under version control.
+- Add repeatable configuration validation before attempting configuration changes.
+- Add configuration workflows only after rollback and evidence requirements are defined.
 
 ## Phase 5 - Telemetry and Data Engineering
 
@@ -47,7 +59,8 @@ The dependency order is deliberate:
 ```text
 Working network
 -> manual validation
--> repeatable state collection
+-> repeatable read-only collection
+-> management-plane automation
 -> structured historical data
 -> anomaly detection
 -> machine-learning experimentation

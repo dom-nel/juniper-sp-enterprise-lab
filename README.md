@@ -59,6 +59,32 @@ The missing transit policy is intentional. It creates a controlled checkpoint wh
 
 See the [Phase 1 build record](documentation/phase-1/README.md) for the completed steps, remaining work, and acceptance criteria.
 
+## Automation Milestone: Read-Only Device Facts
+
+The first network automation milestone is complete. A local Python program using Junos PyEZ connected to both cloud-hosted vSRX consoles and retrieved structured device facts.
+
+```mermaid
+flowchart LR
+    A["Python + PyEZ<br/>local workstation"]
+    B["127.0.0.1<br/>ports 32771 and 32772"]
+    C["Encrypted SSH tunnel"]
+    D["GCP VM<br/>Linux + EVE-NG"]
+    E["LAB-FW-01<br/>vSRX console"]
+    F["LAB-RTR-01<br/>vSRX console"]
+
+    A --> B --> C --> D
+    D --> E
+    D --> F
+```
+
+SSH encrypted the workstation-to-GCP path, while PyEZ used `mode="telnet"` for the final EVE-NG console sessions. This was read-only console access, not NETCONF over TCP 830.
+
+- [Automation walkthrough](automation/README.md)
+- [Python facts collector](automation/pull_device_facts.py)
+- [Sanitized two-device output](validation-outputs/automation/pyez-facts-sanitized.txt)
+- [Connection-path diagram](diagrams/pyez-console-access.md)
+- [Troubleshooting record](troubleshooting/pyez-console-access.md)
+
 ## What the Current Evidence Demonstrates
 
 ### Cloud and platform administration
@@ -125,13 +151,15 @@ Did the firewall create a session?
 
 | Path | Purpose |
 |---|---|
+| `automation/` | Python collector, dependency file, and reproducible SSH/PyEZ procedure |
+| `diagrams/` | Management-path diagrams for automation milestones |
 | `topology/` | EVE-NG export and Phase 1 architecture diagram |
 | `documentation/` | Addressing, roles, interface maps, deployment, and phase records |
 | `validation-outputs/` | Sanitized command output and traffic-test evidence |
 | `troubleshooting/` | Fault records, root-cause analysis, and lessons learned |
 | `ROADMAP.md` | Clearly separated future expansion after Phase 1 |
 
-Placeholder-only directories are excluded from the tree. `device-configs/` will be added after sanitized configurations are exported; switching, automation, and server artifacts will be added only when their phases are implemented and validated.
+Placeholder-only directories are excluded from the tree. `automation/` and `diagrams/` now contain the validated PyEZ console milestone; `device-configs/` and server artifacts will be added only when their phases are implemented and validated.
 
 ## Documentation
 
@@ -141,13 +169,16 @@ Placeholder-only directories are excluded from the tree. `device-configs/` will 
 - [Interface and Circuit Map](documentation/interface-circuit-map.md)
 - [IP Addressing Plan](documentation/ip-addressing-plan.md)
 - [Hostname Convention](documentation/hostname-convention.md)
+- [PyEZ Console Automation](automation/README.md)
+- [PyEZ Console Troubleshooting](troubleshooting/pyez-console-access.md)
+- [PyEZ Facts Evidence](validation-outputs/automation/pyez-facts-sanitized.txt)
 - [Local vSRX Resource Exhaustion](troubleshooting/local-vsrx-resource-exhaustion.md)
 - [GCP Host Validation](validation-outputs/phase-1/gcp-host-validation.txt)
 - [Future Development](ROADMAP.md)
 
 ## Future Development
 
-Dynamic routing, switching, automation, and telemetry are not part of the completed Phase 1 claim. They are sequenced in [ROADMAP.md](ROADMAP.md) and will move into the main documentation only after configuration and validation evidence exists.
+Switching, dynamic routing, configuration automation, telemetry, and data engineering remain future work. The completed PyEZ collector is the first read-only automation milestone; later milestones will move into the main documentation only after configuration and validation evidence exists.
 
 ## Repository Safety
 
