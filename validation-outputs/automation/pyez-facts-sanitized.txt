@@ -1,0 +1,29 @@
+JUNOS PYEZ FACT COLLECTION - SANITIZED SESSION EVIDENCE
+Run date: 2026-09-05
+
+Sanitization:
+- Junos credentials were prompted at runtime and are not shown.
+- GCP public addressing and project identifiers are omitted.
+- Complete serial values and volatile uptime are omitted.
+- Output is reformatted to retain only the facts needed to prove both sessions.
+
+[LAB-FW-01] local console port 32771
+connection: successful
+hostname: LAB-FW-01
+model: VSRX RE
+mastership_state: master
+
+[LAB-RTR-01] local console port 32772
+connection: successful
+hostname: LAB-RTR-01
+model: VSRX RE
+status: Testing
+mastership_state: master
+current_re: [master, fpc0, node, fwdd, member, pfem, re0, fpc0.pic0]
+last_reboot_reason: Router rebooted after a normal shutdown.
+
+RESULT: PASS
+Both logical inventory entries reached live Junos vSRX control planes and returned structured facts through their SSH-forwarded EVE-NG console ports.
+
+Evidence boundary:
+This transcript documents the successful read-only run retained from the lab session. It does not claim NETCONF on TCP 830, configuration changes, or data-plane reachability.
